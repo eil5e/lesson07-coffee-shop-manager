@@ -25,7 +25,29 @@ export default function CoffeeShopManager() {
         document.title = `${customerCount}👥 | ${orders.length}☕ ITCoffee`;
         console.log('Document title updated');
     }, [customerCount, orders]);
-    
+
+    useEffect(() => {
+        console.log('Loading saved data from localStorage...');
+
+        // ========================================
+        // 📚 DEMO useEffect 3: Load saved customer count from localStorage on Mount
+        // ========================================
+        // This useEffect loads customerCount and orders from localStorage on mount
+        const savedCustomerCount = localStorage.getItem('coffeeShop_customerCount');
+        if (savedCustomerCount !== null) {
+            setCustomerCount(parseInt(savedCustomerCount, 10));
+            console.log('✅ Loaded customer count:', savedCustomerCount);
+        }
+
+        // ========================================
+        // 🎯 EXERCISE useEffect 2: Load saved order from localStorage on Mount
+        // ========================================
+        // Hint: Load orders with localStorage.getItem('coffeeShop_orders')
+        // Hint: Check if the values exist before setting state (if (savedValue) { ... })
+        // Hint: Remember to parse the JSON string for orders before use setOrders: JSON.parse(savedOrders)
+
+    }, []);
+
     // ========================================
     // 📚 DEMO useEffect 2: Auto-save Customer Count
     // ========================================
@@ -34,7 +56,7 @@ export default function CoffeeShopManager() {
         localStorage.setItem('coffeeShop_customerCount', customerCount.toString());
         console.log('Saved customer count:', customerCount);
     }, [customerCount]);
-    
+
     // ========================================
     // 🎯 EXERCISE useEffect 1: Auto-save Orders
     // ========================================
@@ -42,16 +64,6 @@ export default function CoffeeShopManager() {
     // Hint: Use localStorage.setItem('coffeeShop_orders', JSON.stringify(orders))
     // Hint: The dependency array should include [orders]
     // Hint: Don't forget to add a console.log to see when it runs!
-
-    // ========================================
-    // 🎯 EXERCISE useEffect 2: Load from localStorage on Mount
-    // ========================================
-    // TODO: Create a useEffect that loads saved data when the component first mounts
-    // Hint: Use an empty dependency array [] to run only once on mount
-    // Hint: Load customerCount with localStorage.getItem('coffeeShop_customerCount')
-    // Hint: Load orders with localStorage.getItem('coffeeShop_orders')
-    // Hint: Remember to parse the JSON string for orders: JSON.parse(savedOrders)
-    // Hint: Check if the values exist before setting state (if (savedValue !== null) { ... })
 
     return (
         <div className="min-h-screen bg-[#D2B48C] py-8 px-4">
