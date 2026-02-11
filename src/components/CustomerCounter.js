@@ -1,4 +1,5 @@
 'use client';
+import useState from 'react';
 
 // CustomerCounter Component
 export default function CustomerCounter({ count, setCount }) {
@@ -43,3 +44,6 @@ export default function CustomerCounter({ count, setCount }) {
         </div>
     );
 }
+
+
+// onClick = ( () => {setCount(count + 1)})

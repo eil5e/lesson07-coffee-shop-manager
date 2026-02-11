@@ -12,12 +12,15 @@ export default function OrderForm({ orders, setOrders }) {
 
     const handleAddOrder = (e) => {
         e.preventDefault();
-        
         // ========================================
         // 🎯 EXERCISE useState 1: Reset Coffee Name
         // ========================================
         // TODO: Reset the coffeeName back to empty string after adding order
         // Hint: Use setCoffeeName('') to clear the input field
+
+        const [coffeeName, setCoffeeName] = useState('');
+        setCoffeeName('');
+
 
         // ========================================
         // 🎯 EXERCISE useState 2: Update Order Array
@@ -26,6 +29,7 @@ export default function OrderForm({ orders, setOrders }) {
         // Hint: Use the spread operator to create a new array: [...orders, coffeeName]
         // Hint: Call setOrders with the new array
         // Hint: Add a console.log to see when an order is added
+
     };
 
     return (
@@ -42,7 +46,7 @@ export default function OrderForm({ orders, setOrders }) {
                     <input
                         type="text"
                         value={coffeeName}
-                        onChange={(e) => setCoffeeName(e.target.value)}
+                        onChange={(e) => setCoffeeName(e.target.value)} //event object
                         placeholder="e.g., Latte, Americano, Cappuccino"
                         className="w-full px-4 py-2 border-2 border-[#D2B48C] rounded bg-white text-[#5D4E37] placeholder-[#D2B48C]"
                     />

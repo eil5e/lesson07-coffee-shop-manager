@@ -15,16 +15,16 @@ export default function CoffeeShopManager() {
     // ========================================
     // 📚 DEMO useState 2: with Orders Array
     // ========================================
-    const [orders, setOrders] = useState([]);
+    const [orders, setOrders] = useState([]); //should not be 0 - initial value empty
 
     // ========================================
     // 📚 DEMO useEffect 1: Update Document Title
     // ========================================
     // This useEffect runs whenever customerCount or orders change
     useEffect(() => {
-        document.title = `${customerCount}👥 | ${orders.length}☕ ITCoffee`;
+        document.title = `${customerCount}👥 | ${orders.length}☕ ITCoffee`; //declare function
         console.log('Document title updated');
-    }, [customerCount, orders]);
+    }, [customerCount, orders]); //dependency array
 
     useEffect(() => {
         console.log('Loading saved data from localStorage...');
@@ -44,6 +44,11 @@ export default function CoffeeShopManager() {
         // Hint: Load orders with localStorage.getItem('coffeeShop_orders')
         // Hint: Check if the values exist before setting state (if (savedValue) { ... })
         // Hint: Remember to parse the JSON string for orders before use setOrders: JSON.parse(savedOrders)
+        const savedOrders = localStorage.getItem('coffeeShop_orders');
+        if (savedValue !== null) {
+            setOrders(JSON.parse(savedOrders));
+            console.log('Orders', savedOrders);
+        }
 
     }, []);
 
@@ -63,6 +68,11 @@ export default function CoffeeShopManager() {
     // Hint: Use localStorage.setItem('coffeeShop_orders', JSON.stringify(orders))
     // Hint: The dependency array should include [orders]
     // Hint: Don't forget to add a console.log to see when it runs!
+
+    useEffect (() =>{
+        localStorage.setItem('coffeeShop_orders',JSON.stringify(orders));
+        console.log('Saved orders:', orders);
+    }, [orders]);
 
     return (
         <div className="min-h-screen bg-[#D2B48C] py-8 px-4">
